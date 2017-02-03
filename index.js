@@ -13,11 +13,22 @@ $(document).ready(function() {
                 var URL = part1 + part2 + part3 + part4 + part5 + part6 + searchVal + part7 + searchVal2;
                 console.log(URL);
              $.getJSON(URL,function(response){
-                 //Name code 
-                 console.log(response);
-                 var ResName= "Restaurant Name:";
-                 var NameVal= response.response.venues[0].name;
-                 console.log(NameVal);
+                 var ResName= "Restaurant Name: ";
+                 var Num= "Phone Number: ";
+                 var Address= "Address: ";
+                    var NameVal= response.response.venues[0].name;
+                    var venues= response.response.venues;
+                    for (var i=0; i < venues.length;i++){
+                         var venue= venues[i];
+                     var venueName= venue.name;
+                     var venueNumber= venue.contact.number;
+                     var venueAddress= venue.location.address;
+                     $("#results").append(ResName + venueName + "<br>");
+                     $("#results").append(Num + venueNumber + "<br>");
+                     $("#results").append(Address + venueAddress + "<br>");
+                     
+                 }
+                 
                  
                  
                  
